@@ -7,12 +7,12 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="这里是 @Chie 的个人博客，记录代码学习过程。">
-    <meta name="keyword"  content="Chie, Chie Blog, 小山, 李千惠, 小山的博客, 博客, iOS, 移动端, Swift, OC">
+    <meta name="keyword"  content="Chie, Chie Blog, 小山, 李千惠, 小山的博客, 博客, iOS, 移动端, Swift, OC, 服务器, Python, Redis">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Example Post - 小山的博客 | Chie Blog</title>
+    <title>Redis学习 - Redis Tutorial - 小山的博客 | Chie Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/2015/09/22/js-version/">
+    <link rel="canonical" href="http://localhost:4000/2018/03/21/redis-tutorial/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -125,12 +125,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-js-version.jpg" width="0" height="0"> -->
+<!-- <img src="/img/in-post/redis-tutorial/post-bg-redis-tutorial.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/post-bg-js-version.jpg')
+        background-image: url('/img/in-post/redis-tutorial/post-bg-redis-tutorial.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -140,19 +140,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
+                        <a class="tag" href="/tags/#服务器开发" title="服务器开发">服务器开发</a>
                         
-                        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
                         
-                        <a class="tag" href="/tags/#翻译" title="翻译">翻译</a>
+                        <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
                         
                     </div>
-                    <h1>Example Post</h1>
+                    <h1>Redis学习 - Redis Tutorial</h1>
                     
                     
-                    <h2 class="subheading">ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?</h2>
+                    <h2 class="subheading">Hello World for Redis</h2>
                     
-                    <span class="meta">Posted by Hux on September 22, 2015</span>
+                    <span class="meta">Posted by Chie on March 21, 2018</span>
                 </div>
             </div>
         </div>
@@ -170,66 +170,85 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<p>JavaScript 有着很奇怪的命名史。</p>
+				<p><img src="/img/in-post/redis-tutorial/try-redis.png" alt="" /></p>
 
-<p>1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript <em>（当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）</em></p>
+<h1 id="前言">前言</h1>
 
-<p><img src="/img/in-post/post-js-version/javascript-java.jpg" alt="java-javascript" />
-<small class="img-hint">歪果仁的笑话怎么一点都不好笑</small></p>
+<p>算是写了两年的iOS，最近很任性地转去了服务器，从零开始。问了问leader需要学些什么，里面就包含Redis，于是就有了这篇拖延了两年的第一篇博文。</p>
 
-<blockquote>
-  <p>译者注：<a href="https://en.wikipedia.org/wiki/JavaScript#History">wikipedia 的 JavaScript 词条</a> 更详细的叙述了这段历史</p>
-</blockquote>
+<p>虽然此时的我对Redis一无所知，但是还是要鼓起勇气写下来，也算是给自己开个头，希望今后能够定期更新吧。</p>
 
-<p>1996 年，网景将 JavaScript 提交给 <a href="http://www.ecma-international.org/">ECMA International（欧洲计算机制造商协会）</a> 进行标准化，并最终确定出新的语言标准，它就是 ECMAScript。自此，ECMAScript 成为所有 JavaScript 实现的基础，不过，由于 JavaScript 名字的历史原因和市场原因（很显然 ECMAScript 这个名字并不令人喜欢……），现实中我们只用 ECMAScript 称呼标准，平时都还是使用 JavaScript 来称呼这个语言。</p>
+<h1 id="redis-tutorial">Redis Tutorial</h1>
 
 <blockquote>
-  <p>术语（译者注）：</p>
-
-  <ul>
-    <li><em>标准（Standard）</em>： 用于定义与其他事物区别的一套规则</li>
-    <li><em>实现（Implementation）</em>： 某个标准的具体实施/真实实践</li>
-  </ul>
+  <p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。</p>
 </blockquote>
 
-<p>不过，JavaScript 开发者们并不怎么在乎这些，因为在诞生之后的 15 年里，ECMAScript 并没有多少变化，而且现实中的很多实现都已经和标准大相径庭。其实在第一版的 ECMAScript 发布后，很快又跟进发布了两个版本，但是自从 1999 年 ECMAScript 3 发布后，十年内都没有任何改动被成功添加到官方规范里。取而代之的，是各大浏览器厂商们争先进行自己的语言拓展，web 开发者们别无选择只能去尝试并且支持这些 API。即使是在 2009 年 ECMAScript 5 发布之后，仍然用了数年这些新规范才得到了浏览器的广泛支持，可是大部分开发者还是写着 ECMAScript 3 风格的代码，并不觉得有必要去了解这些规范。</p>
+<p>支持的数据类型包括strings，hashes（类似于obeject），lists（有序列），sets（无序集合），sorted sets（有序集合）。</p>
 
-<blockquote>
-  <p>译者注：<a href="https://en.wikipedia.org/wiki/ECMAScript#4th_Edition_.28abandoned.29">ECMAScript 第四版草案</a>由于太过激进而被抛弃，Adobe 的 <a href="https://en.wikipedia.org/wiki/ActionScript">ActionScript 3.0</a> 是 ECMAScript edition 4 的唯一实现（ Flash 差点就统一 Web 了）</p>
-</blockquote>
-
-<p>到了 2012 年，事情突然开始有了转变。大家开始推动停止对旧版本 IE 浏览器的支持，用 ECMAScript 5 (ES5) 风格来编写代码也变得更加可行。与此同时，一个新的 ECMAScript 规范也开始启动。到了这时，大家开始逐渐习惯以对 ECMAScript 规范的版本支持程度来形容各种 JavaScript 实现。在正式被指名为 ECMAScript 第 6 版 (ES6) 之前，这个新的标准原本被称为 ES.Harmony（和谐）。2015 年，负责制定 ECMAScript 规范草案的委员会 TC39 决定将定义新标准的制度改为一年一次，这意味着每个新特性一旦被批准就可以添加，而不像以往一样，规范只有在整个草案完成，所有特性都没问题后才能被定稿。因此，ECMAScript 第 6 版在六月份公布之前，又被重命名为了 ECMAScript 2015（ES2015）</p>
-
-<p>目前，仍然有很多新的 JavaScript 特性或语法正在提议中，包括 <a href="https://github.com/wycats/javascript-decorators">decorators（装饰者）</a>，<a href="https://github.com/lukehoban/ecmascript-asyncawait">async-await（async-await 异步编程模型）</a> 和 <a href="https://github.com/jeffmo/es-class-properties">static class properties（静态类属性）</a>。它们通常被称为 ES7，ES2016 或者 ES.Next 的特性，不过实际上它们只能被称作提案或者说可能性，毕竟 ES2016 的规范还没有完成，有可能全部都会引入，也有可能一个都没有。TC39 把一个提案分为 4 个阶段，你可以在 <a href="https://babeljs.io/docs/usage/experimental/">Babel 的官网</a> 上查看各个提案目前都在哪个阶段了。</p>
-
-<p>所以，我们该如何使用这一大堆术语呢？下面的列表或许能帮助到你：</p>
-
+<h2 id="operations">operations</h2>
 <ul>
-  <li><strong>ECMAScript</strong>：一个由 ECMA International 进行标准化，TC39 委员会进行监督的语言。通常用于指代标准本身。</li>
-  <li><strong>JavaScript</strong>：ECMAScript 标准的各种实现的最常用称呼。这个术语并不局限于某个特定版本的 ECMAScript 规范，并且可能被用于任何不同程度的任意版本的 ECMAScript 的实现。</li>
-  <li><strong>ECMAScript 5 (ES5)</strong>：ECMAScript 的第五版修订，于 2009 年完成标准化。这个规范在所有现代浏览器中都相当完全的实现了。</li>
-  <li><strong>ECMAScript 6 (ES6) / ECMAScript 2015 (ES2015)</strong>：ECMAScript 的第六版修订，于 2015 年完成标准化。这个标准被部分实现于大部分现代浏览器。可以查阅<a href="http://kangax.github.io/compat-table/es6/">这张兼容性表</a>来查看不同浏览器和工具的实现情况。</li>
-  <li><strong>ECMAScript 2016</strong>：预计的第七版 ECMAScript 修订，计划于明年夏季发布。这份规范具体将包含哪些特性还没有最终确定</li>
-  <li><strong>ECMAScript Proposals</strong>：被考虑加入未来版本 ECMAScript 标准的特性与语法提案，他们需要经历五个阶段：Strawman（稻草人），Proposal（提议），Draft（草案），Candidate（候选）以及 Finished （完成）。</li>
+  <li><strong>SET</strong> [key] [value]</li>
+  <li><strong>SETNX</strong> [key] [value] =&gt; set-if-not-exists</li>
+  <li><strong>GET</strong> [key]</li>
+  <li><strong>DEL</strong> [key]</li>
+  <li><strong>INCR</strong> [key] =&gt; automatically increment a number stored at key, is an atomic operation</li>
+  <li><strong>EXPIRE</strong> [key] [seconds] =&gt; set a key should only exist for a certain length of time</li>
+  <li><strong>TTL</strong> [key] =&gt; check how long will a key exist, return -2 for not exist and return -1 for never expire</li>
 </ul>
 
-<p>在这整个 Blog 中，我将把目前的 ECMAScript 版本称作 ES6（因为这是大部分开发者最习以为常的），把明年的规范称作 ES2016（因为，与 ES6/ES2015 不同，这个名字将在整个标准化过程中沿用）并且将那些还没有成为 ECMAScript 定稿或草案的未来语言概念称为 ECMAScript 提案或者 JavaScript 提案。我将尽我所能在任何可能引起困惑的场合沿用这篇文章。</p>
-
-<h4 id="一些资源">一些资源</h4>
-
+<h2 id="list-operations">list operations</h2>
 <ul>
-  <li>TC39 的 <a href="https://github.com/tc39/ecma262">Github 仓库</a>上可以看到所有目前公开的提案</li>
-  <li>如果你还不熟悉 ES6，Babel 有一个<a href="https://babeljs.io/docs/learn-es2015/">很不错的特性概览</a></li>
-  <li>如果你希望深入 ES6，这里有两本很不错的书： Axel Rauschmayer 的 <a href="http://exploringjs.com/">Exploring ES6</a>和 Nicholas Zakas 的 <a href="https://leanpub.com/understandinges6">Understanding ECMAScript 6</a>。Axel 的博客 <a href="http://www.2ality.com/">2ality</a> 也是很不错的 ES6 资源</li>
+  <li><strong>RPUSH</strong> [key] [value] =&gt; push the value at the end of the list if the key doesn’t exist as a different type</li>
+  <li><strong>LPUSH</strong> [key] [value] =&gt; push the value at the start of the list</li>
+  <li><strong>LRANGE</strong> [key] [index] [index] =&gt; give a subset of the list, a value of -1 for the second parameter means to retrieve elements until the end of the list.</li>
+  <li><strong>LLEN</strong> [key] =&gt; return the current length of the list</li>
+  <li><strong>RPOP</strong> [key] =&gt; remove the last element from the list and return it</li>
 </ul>
 
-<p><img class="shadow" width="320" src="/img/in-post/post-js-version/keep-calm-and-learn-javascript.png" />
-<small class="img-hint">来学 JavaScript 吧！</small></p>
+<h2 id="set-operation">set operation</h2>
+<ul>
+  <li><strong>SADD</strong> [key] [value]</li>
+  <li><strong>SREM</strong> [key] [value]</li>
+  <li><strong>SISMEMBER</strong> [key] [value] =&gt; test the given value is in the set.return 1 if the value is there and 0 if it is not</li>
+  <li><strong>SMEMBERS</strong> [key] =&gt; return a list of all the members in set</li>
+  <li><strong>SUION</strong> [key1] [key2] .. =&gt; combine two or more set and return a list of all the mumbers</li>
+</ul>
 
-<h4 id="著作权声明">著作权声明</h4>
+<h2 id="sorted-set-operation">sorted set operation</h2>
+<blockquote>
+  <p>A sorted set is similar to a regular set, but now each value has an associated score. This score is used to sort the elements in the set.</p>
+</blockquote>
 
-<p>本文译自 <a href="http://benmccormick.org/2015/09/14/es5-es6-es2016-es-next-whats-going-on-with-javascript-versioning/">ES5, ES6, ES2016, ES.Next: What’s going on with JavaScript versioning?</a> <br />
-译者 <a href="http://weibo.com/huxpro">黄玄</a>，首次发布于 <a href="http://huangxuan.me">Hux Blog</a>，转载请保留以上链接</p>
+<ul>
+  <li><strong>ZADD</strong> [key] [score] [value]</li>
+  <li><strong>ZRANGE</strong> [key] [index1] [index2]</li>
+</ul>
+
+<h2 id="hashes-operation">hashes operation</h2>
+<blockquote>
+  <p>Hashes are maps between string fields and string values, so they are the perfect data type to represent objects.</p>
+</blockquote>
+
+<ul>
+  <li><strong>HSET</strong> [key] [field] [value]</li>
+  <li><strong>HMSET</strong> [key] [field1] [value1] [field1] [value2] .. =&gt; set multiple fields at once</li>
+  <li><strong>HGETALL</strong> [key]</li>
+  <li><strong>HGET</strong> [key] [field]</li>
+  <li><strong>HINCRBY</strong> [key] [field] [count] =&gt; atomically increment hash field, exatly the same as in simple strings</li>
+  <li><strong>HDEL</strong> [key] [field]</li>
+</ul>
+
+<h2 id="more">more</h2>
+
+<p>Tutorial的最后是下面的四个链接可以更深入地学习</p>
+
+<ul>
+  <li><a href="https://redis.io/documentation">Redis Documentation</a></li>
+  <li><a href="https://redis.io/commands">Command Reference</a></li>
+  <li><a href="https://redis.io/topics/twitter-clone">Implement a Twitter Clone in Redis</a></li>
+  <li><a href="https://redis.io/topics/data-types-intro">Introduction to Redis Data Types</a></li>
+</ul>
 
 
                 <hr>
@@ -238,10 +257,6 @@
 
 
                 <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2015/07/09/js-module-7day/" data-toggle="tooltip" data-placement="top" title="Example Post using Keynote Layout">&larr; Previous Post</a>
-                    </li>
                     
                     
                 </ul>
@@ -272,33 +287,11 @@
         				
                             
         				
-                            
-        				
-                            
-                				<a href="/tags/#前端开发" title="前端开发" rel="3">
-                                    前端开发
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#JavaScript" title="JavaScript" rel="3">
-                                    JavaScript
-                                </a>
-                            
-        				
-                            
-        				
         			</div>
                 </section>
                 
 
                 <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                </ul>
                 
             </div>
         </div>
@@ -393,7 +386,7 @@
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Chie Blog 2017
+                    Copyright &copy; Chie Blog 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

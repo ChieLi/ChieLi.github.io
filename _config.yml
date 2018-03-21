@@ -4,9 +4,9 @@ SEOTitle: 小山的博客 | Chie Blog
 header-img: img/home-bg.jpg
 email: liqianhui0522@gmail.com
 description: "这里是 @Chie 的个人博客，记录代码学习过程。"
-keyword: "Chie, Chie Blog, 小山, 李千惠, 小山的博客, 博客, iOS, 移动端, Swift, OC"
-url: "https://chieli.github.io/"              # your host, for absolute URL
-baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+keyword: "Chie, Chie Blog, 小山, 李千惠, 小山的博客, 博客, iOS, 移动端, Swift, OC, 服务器, Python, Redis"
+url: "https://chieli.github.io/"
+baseurl: ""
 
 
 
@@ -16,8 +16,8 @@ weibo_username:     李小山chie
 #zhihu_username:     小山山山
 github_username:    chieli
 twitter_username:   chiecode
-#facebook_username:  huxpro
-# linkedin_username:  firstname-lastname-idxxxx
+#facebook_username:  
+# linkedin_username:  
 
 
 
@@ -26,7 +26,7 @@ twitter_username:   chiecode
 highlighter: rouge
 permalink: pretty
 paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
 
@@ -67,7 +67,7 @@ kramdown:
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "如果撸猫可以维持生计，绝不撸代码<br>瞎写博客"
+sidebar-about-description: "一个没什么职业规划的程序员"
 sidebar-avatar: /img/avatar-chie.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 

@@ -1,9 +1,13 @@
-# HuxBlog Boilerplate
+# ChieBlog
 
-##### This is the boilerplate of [Hux Blog](https://github.com/Huxpro/huxpro.github.io), all documents is over there!
+[chie blog](https://chieli.github.io) 
 
-#### [View Boilerplate &rarr;](http://huangxuan.me/huxblog-boilerplate/)
+## Hi
 
-#### [View Live Hux Blog &rarr;](http://huangxuan.me)
+我是Chie，是乐动力的工程师。这是我的博客，用来记录平时的学习过程，方便查找。
 
-## If you like Hux Blog, Please star [huxpro.github.io repo](https://github.com/Huxpro/huxpro.github.io) instead of this! Thank you!
+## 关于博客
+
+这个博客的模板是从一位大神那里fork下来的，觉得特别好看，虽然不认识但是感谢大神的共享🙏
+
+附上链接 -> [huxpro.github.io repo](https://github.com/Huxpro/huxpro.github.io)  
